@@ -17,7 +17,6 @@ void moveWhiteKnight(char board[9][9], int startRowLocation, int startCollumnLoc
 
 int main()
 {   
-    printf("test commit");
     char board[9][9] = {{"/12345678"},{"1ABCDECBA"},{"2WWWWWWWW"},{"3oooooooo"},{"4oooooooo"},{"5oooJoooo"},{"6oooooooo"},{"7SSSSSSSS"},{"8JKLMNLKJ"}};
     int startRowLocation, startCollumnLocation, targetRowLocation, targetCollumnLocation;
 
