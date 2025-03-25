@@ -15,6 +15,7 @@ void moveBlackRook(char board[9][9], int startRowLocation, int startCollumnLocat
 
 void moveWhiteKnight(char board[9][9], int startRowLocation, int startCollumnLocation, int targetRowLocation, int targetCollumnLocation);
 
+void moveBlackKnight(char board[9][9], int startRowLocation, int startCollumnLocation, int targetRowLocation, int targetCollumnLocation);
 int main()
 {   
     char board[9][9] = {{"/12345678"},{"1ABCDECBA"},{"2WWWWWWWW"},{"3oooooooo"},{"4oooooooo"},{"5oooJoooo"},{"6oooooooo"},{"7SSSSSSSS"},{"8JKLMNLKJ"}};
@@ -25,11 +26,16 @@ int main()
     printBoard(board);
 
     while (1)
-    {
-        int startRowLocation = 0, startCollumnLocation = 0, targetRowLocation = 0, targetCollumnLocation = 0;
-        scanf("%d %d", &startRowLocation, &startCollumnLocation);
-        scanf("%d %d", &targetRowLocation, &targetCollumnLocation);
-        moveBlackRook(board, startRowLocation, startCollumnLocation, targetRowLocation, targetCollumnLocation);
+    {   
+        int endMove = 1;
+        int startRowLocation, startCollumnLocation, targetRowLocation, targetCollumnLocation;
+        char whitePiece;
+        char blackPiece;
+
+        scanf("Choose start location:%d %d\n",&startRowLocation,&startCollumnLocation);
+        scanf("Choose target location:%d %d\n",&targetRowLocation,&targetCollumnLocation);
+        
+        moveWhitePawn(board,startRowLocation,startCollumnLocation,targetRowLocation,targetCollumnLocation);
     }
 }
 
@@ -113,14 +119,12 @@ void moveWhitePawn(char board[9][9], int startRowLocation, int startCollumnLocat
         board[targetRowLocation][targetCollumnLocation] = 'W';
         board[startRowLocation][startCollumnLocation] = 'o';
         printBoard(board);
-        return;
     }
     if (targetCollumnLocation == startCollumnLocation)
     {
         if (startPiece != 'W')
         {
             printf("Wrong start location.\n");
-            return;
         }
 
         if (startRowLocation == 2 && (targetRowLocation - startRowLocation <= 2))
@@ -130,7 +134,6 @@ void moveWhitePawn(char board[9][9], int startRowLocation, int startCollumnLocat
                 board[targetRowLocation][targetCollumnLocation] = 'W';
                 board[startRowLocation][startCollumnLocation] = 'o';
                 printBoard(board);
-                return;
             }
         }
         else if (targetPiece == 'o' && targetRowLocation - startRowLocation == 1)
@@ -138,7 +141,6 @@ void moveWhitePawn(char board[9][9], int startRowLocation, int startCollumnLocat
             board[targetRowLocation][targetCollumnLocation] = 'W';
             board[startRowLocation][startCollumnLocation] = 'o';
             printBoard(board);
-            return;
         }
     }
     printf("The White Pawn can't go there.\n");
@@ -356,6 +358,157 @@ void moveBlackRook(char board[9][9], int startRowLocation, int startCollumnLocat
         printf("The Black Rook can't go there.\n");
     }
 }
+//----------------------------------------------------------------------------------------------------------------//
+//MOVE WHITE KNIGHT FUNCTION
+//----------------------------------------------------------------------------------------------------------------//
+void moveWhiteKnight(char board[9][9], int startRowLocation, int startCollumnLocation, int targetRowLocation, int targetCollumnLocation)
+{
+    char startPiece = board[startRowLocation][startCollumnLocation];
+    char targetPiece = board[targetRowLocation][targetCollumnLocation];
 
+    if(startPiece != 'B')
+    {
+        printf("Wrong start location.\n");
+        return;
+    }
+
+    if(targetPiece != 'o' && targetPiece != 'S' && targetPiece != 'J' && targetPiece != 'K' && targetPiece != 'L' && targetPiece != 'M' && targetPiece != 'N')
+    {
+        printf("Wrong target location.\n");
+        return;
+    }
+
+    if(targetRowLocation - startRowLocation == 1 && startCollumnLocation - targetCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 1 && targetCollumnLocation - startCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 2 && startCollumnLocation  - targetCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 2 && targetCollumnLocation - startCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 1 && startCollumnLocation - targetCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 1 && targetCollumnLocation - startCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 2 && startCollumnLocation - targetCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 2 && targetCollumnLocation - startCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+}
+//----------------------------------------------------------------------------------------------------------------//
+//MOVE BLACK KNIGHT FUNCTION
+//----------------------------------------------------------------------------------------------------------------//
+void moveBlackKnight(char board[9][9], int startRowLocation, int startCollumnLocation, int targetRowLocation, int targetCollumnLocation)
+{
+    char startPiece = board[startRowLocation][startCollumnLocation];
+    char targetPiece = board[targetRowLocation][targetCollumnLocation];
+
+    if(startPiece != 'K')
+    {
+        printf("Wrong start location.\n");
+        return;
+    }
+
+    if(targetPiece != 'o' && targetPiece != 'W' && targetPiece != 'A' && targetPiece != 'B' && targetPiece != 'C' && targetPiece != 'D' && targetPiece != 'E')
+    {
+        printf("Wrong target location.\n");
+        return;
+    }
+
+    if(targetRowLocation - startRowLocation == 1 && startCollumnLocation - targetCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 1 && targetCollumnLocation - startCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 2 && startCollumnLocation  - targetCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(targetRowLocation - startRowLocation == 2 && targetCollumnLocation - startCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 1 && startCollumnLocation - targetCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 1 && targetCollumnLocation - startCollumnLocation == 2)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 2 && startCollumnLocation - targetCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'K';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+
+    else if(startRowLocation - targetRowLocation == 2 && targetCollumnLocation - startCollumnLocation == 1)
+    {
+        board[targetRowLocation][targetCollumnLocation] = 'B';
+        board[startRowLocation][startCollumnLocation] = 'o';
+        printBoard(board);
+    }
+}
 
 
