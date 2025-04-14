@@ -1,22 +1,22 @@
 #include <stdio.h>
 #define GRIDROWS 10
-#define GRIDCOLLUMNS 10
+#define GRIDCOLUMNS 10
 
-int checkEnd(char grid[10][10], char letter, int gridRowLocation, int gridCollumnLocation, int check);
+int checkEnd(char grid[10][10], char letter, int gridRowLocation, int gridColumnLocation, int check);
 
 void printGrid(char grid[10][10]);
 
-void mod0Left(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation);
+void mod0Left(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation);
 
-void mod1Right(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation);
+void mod1Right(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation);
 
-void mod2Up(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation);
+void mod2Up(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation);
 
-void mod3Down(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation);
+void mod3Down(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation);
 
 int main()
 {
-  int gridRowLocation = 0, gridCollumnLocation = 0, check = 1, number, order = 0;
+  int gridRowLocation = 0, gridColumnLocation = 0, check = 1, number, order = 0;
   char grid[10][10] = {"A.........","..........","..........","..........","..........","..........","..........","..........","..........",".........."};
   char alphabet[26] = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
   char letter = alphabet[order];
@@ -29,31 +29,31 @@ int main()
     switch(number%4)
     {
       case 0:
-      if(gridCollumnLocation == 0)
+      if(gridColumnLocation == 0)
       {
         break;
       }
 
-        if(grid[gridRowLocation][gridCollumnLocation-1] == '.')
+        if(grid[gridRowLocation][gridColumnLocation-1] == '.')
         {
           order++;
           letter = alphabet[order];
-          mod0Left(grid, letter, &gridRowLocation, &gridCollumnLocation);
+          mod0Left(grid, letter, &gridRowLocation, &gridColumnLocation);
           printGrid(grid);
         }
 
       break;
       case 1:
-      if(gridCollumnLocation == 9)
+      if(gridColumnLocation == 9)
       {
         break;
       }
 
-      if(grid[gridRowLocation][gridCollumnLocation+1] == '.')
+      if(grid[gridRowLocation][gridColumnLocation+1] == '.')
         {
           order++;
           letter = alphabet[order];
-          mod1Right(grid, letter, &gridRowLocation, &gridCollumnLocation);
+          mod1Right(grid, letter, &gridRowLocation, &gridColumnLocation);
           printGrid(grid);
         }
       break;
@@ -63,11 +63,11 @@ int main()
         break;
       }
 
-      if(grid[gridRowLocation-1][gridCollumnLocation] == '.')
+      if(grid[gridRowLocation-1][gridColumnLocation] == '.')
         {
           order++;
           letter = alphabet[order];
-          mod2Up(grid, letter, &gridRowLocation, &gridCollumnLocation);
+          mod2Up(grid, letter, &gridRowLocation, &gridColumnLocation);
           printGrid(grid);
         }
       break;
@@ -77,11 +77,11 @@ int main()
         break;
       }
 
-      if(grid[gridRowLocation+1][gridCollumnLocation] == '.')
+      if(grid[gridRowLocation+1][gridColumnLocation] == '.')
         {
           order++;
           letter = alphabet[order];
-          mod3Down(grid, letter, &gridRowLocation, &gridCollumnLocation);
+          mod3Down(grid, letter, &gridRowLocation, &gridColumnLocation);
           printGrid(grid);
         }
       break;
@@ -89,7 +89,7 @@ int main()
       default:
       break;
     }
-    check = checkEnd(grid, letter, gridRowLocation, gridCollumnLocation, check);
+    check = checkEnd(grid, letter, gridRowLocation, gridColumnLocation, check);
   }
 
   return 0;
@@ -97,49 +97,49 @@ int main()
 
 void printGrid(char grid[10][10])
 {
-  int rows,collumns;
+  int rows,columns;
   for(int rows = 0;rows < GRIDROWS;rows++)
   {
-    for(int collumns = 0;collumns < GRIDCOLLUMNS;collumns++)
+    for(int columns = 0;columns < GRIDCOLUMNS;columns++)
     {
-      printf("%c",grid[rows][collumns]);
+      printf("%c",grid[rows][columns]);
     }
     printf("\n");
   }
 }
 
-void mod0Left(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation)
+void mod0Left(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation)
 {
-  (*gridCollumnLocation)--;
-  grid[*gridRowLocation][*gridCollumnLocation] = letter;
+  (*gridColumnLocation)--;
+  grid[*gridRowLocation][*gridColumnLocation] = letter;
 }
 
-void mod1Right(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation)
+void mod1Right(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation)
 {
-  (*gridCollumnLocation)++;
-  grid[*gridRowLocation][*gridCollumnLocation] = letter;
+  (*gridColumnLocation)++;
+  grid[*gridRowLocation][*gridColumnLocation] = letter;
 }
 
-void mod2Up(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation)
+void mod2Up(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation)
 {
   (*gridRowLocation)--;
-  grid[*gridRowLocation][*gridCollumnLocation] = letter;
+  grid[*gridRowLocation][*gridColumnLocation] = letter;
 }
 
-void mod3Down(char grid[10][10], char letter, int* gridRowLocation, int* gridCollumnLocation)
+void mod3Down(char grid[10][10], char letter, int* gridRowLocation, int* gridColumnLocation)
 {
   (*gridRowLocation)++;
-  grid[*gridRowLocation][*gridCollumnLocation] = letter;
+  grid[*gridRowLocation][*gridColumnLocation] = letter;
 }
 
-int checkEnd(char grid[10][10], char letter, int gridRowLocation, int gridCollumnLocation,int check)
+int checkEnd(char grid[10][10], char letter, int gridRowLocation, int gridColumnLocation,int check)
 {
   if(letter == 'Z')
   {
     check = 0;
     return check;
   }
-  if(grid[gridRowLocation+1][gridCollumnLocation] != '.' && grid[gridRowLocation-1][gridCollumnLocation] != '.' && grid[gridRowLocation][gridCollumnLocation+1] != '.' && grid[gridRowLocation][gridCollumnLocation-1] != '.')
+  if(grid[gridRowLocation+1][gridColumnLocation] != '.' && grid[gridRowLocation-1][gridColumnLocation] != '.' && grid[gridRowLocation][gridColumnLocation+1] != '.' && grid[gridRowLocation][gridColumnLocation-1] != '.')
   {
     check = 0;
     return check;
